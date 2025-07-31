@@ -3,163 +3,505 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meghan | Hair Stylist</title>
+    <title>Meghan | Precision Hair Stylist - Book Online</title>
+    <meta name="description" content="Professional hair styling services in Maine. Precision cuts, color, and styling inspired by Vidal Sassoon philosophy. Book your appointment online.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        .carousel-slide {
-            display: none;
-            width: 100%;
-        }
-        .carousel-slide.active {
-            display: block;
-        }
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .carousel-button.prev { left: 10px; }
-        .carousel-button.next { right: 10px; }
-    </style>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="enhanced-styles.css">
 </head>
-<body class="bg-[#FFC5C5] text-gray-800">
-    <header class="bg-[#87CEEB] text-white py-6">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl font-bold">Meghan</h1>
-            <p class="text-xl">Precision Hair Stylist</p>
+<body class="bg-gradient-to-br from-pink-50 to-blue-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-sky-600">Meghan Hair Studio</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#about" class="hover:text-sky-600 transition-colors">About</a>
+                    <a href="#services" class="hover:text-sky-600 transition-colors">Services</a>
+                    <a href="#portfolio" class="hover:text-sky-600 transition-colors">Portfolio</a>
+                    <a href="#testimonials" class="hover:text-sky-600 transition-colors">Reviews</a>
+                    <a href="#booking" class="bg-sky-500 text-white px-4 py-2 rounded-lg hover:bg-sky-600 transition-colors">Book Now</a>
+                </div>
+                <button class="md:hidden hamburger-menu">
+                    <span class="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+                    <span class="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+                    <span class="block w-6 h-0.5 bg-gray-600"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-sky-400 to-pink-300 text-white py-20 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4">Precision Hair Artistry</h1>
+            <p class="text-xl md:text-2xl mb-8">Inspired by Vidal Sassoon's Legacy of Excellence</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#booking" class="bg-white text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105">Book Consultation</a>
+                <a href="#services" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-sky-600 transition-all">View Services</a>
+            </div>
         </div>
     </header>
+
     <main class="container mx-auto px-4 py-8">
-        <section class="mb-12 text-center">
-            <img src="folder/bio_meg.png" alt="Meghan, a hair stylist with shoulder-length blonde hair and glasses" class="max-w-full h-auto mx-auto">
+        <!-- About Section -->
+        <section id="about" class="mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h2 class="text-4xl font-bold mb-6 text-gray-800">Meet Meghan</h2>
+                    <p class="text-lg mb-6 leading-relaxed">I'm a 17-year hair veteran from western Maine, first learning the fundamentals of hair in Boston on the reputable Newbury Street. I then returned to my home state for 10 years where I was fortunate enough to build steadfast relationships with my clients.</p>
+                    <p class="text-lg mb-6 leading-relaxed">My approach to hairstyling is deeply influenced by the Vidal Sassoon philosophy of precision cutting and personalized style. Every cut is a collaboration between stylist and client, resulting in a look that's both beautiful and manageable.</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full text-sm">17+ Years Experience</span>
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Precision Cutting</span>
+                        <span class="bg-cyan-100 text-cyan-800 px-3 py-1 rounded-full text-sm">Color Specialist</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <img src="folder/bio_meg.png" alt="Meghan, Professional Hair Stylist" class="rounded-2xl shadow-2xl max-w-full h-auto mx-auto">
+                </div>
+            </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">About Me</h2>
-            <p>I'm a 17 year hair veteran from western Maine, first learning the fundamentals of hair in Boston on the reputable Newbury Street. I then returned to my home state for 10 years where I was fortunate enough to build steadfast relationships with my clients.</p>
+        <!-- Services Section -->
+        <section id="services" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Services & Pricing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Precision Cut -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-sky-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Precision Cut</h3>
+                        <p class="text-gray-600 mb-4">Expert cutting techniques that enhance your natural features and lifestyle.</p>
+                        <div class="text-2xl font-bold text-sky-600 mb-4">$85</div>
+                        <button class="book-service bg-sky-500 text-white px-6 py-2 rounded-lg hover:bg-sky-600 transition-colors w-full" data-service="precision-cut" data-price="85">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Color Services -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-pink-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2a2 2 0 002-2V3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Color Services</h3>
+                        <p class="text-gray-600 mb-4">Full color, highlights, lowlights, and color correction services.</p>
+                        <div class="text-2xl font-bold text-pink-600 mb-4">$120+</div>
+                        <button class="book-service bg-pink-500 text-white px-6 py-2 rounded-lg hover:bg-pink-600 transition-colors w-full" data-service="color-services" data-price="120">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Cut & Color -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-cyan-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cut & Color Package</h3>
+                        <p class="text-gray-600 mb-4">Complete transformation with precision cut and color services.</p>
+                        <div class="text-2xl font-bold text-cyan-600 mb-4">$185</div>
+                        <button class="book-service bg-cyan-500 text-white px-6 py-2 rounded-lg hover:bg-cyan-600 transition-colors w-full" data-service="cut-color-package" data-price="185">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Styling Services -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Special Event Styling</h3>
+                        <p class="text-gray-600 mb-4">Professional styling for weddings, events, and special occasions.</p>
+                        <div class="text-2xl font-bold text-purple-600 mb-4">$95</div>
+                        <button class="book-service bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition-colors w-full" data-service="event-styling" data-price="95">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Consultation -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Style Consultation</h3>
+                        <p class="text-gray-600 mb-4">In-depth consultation to design your perfect look and style plan.</p>
+                        <div class="text-2xl font-bold text-green-600 mb-4">$35</div>
+                        <button class="book-service bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors w-full" data-service="consultation" data-price="35">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- Maintenance -->
+                <div class="service-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all transform hover:-translate-y-2">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-indigo-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Maintenance Touch-Up</h3>
+                        <p class="text-gray-600 mb-4">Regular maintenance cuts and quick color touch-ups between appointments.</p>
+                        <div class="text-2xl font-bold text-indigo-600 mb-4">$55</div>
+                        <button class="book-service bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors w-full" data-service="maintenance" data-price="55">Book Now</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">My Specialties</h2>
-            <p>My approach to hairstyling is deeply influenced by the Vidal Sassoon philosophy of precision cutting and personalized style.</p>
-            <ul class="list-disc list-inside">
-                <li>Precision Cuts</li>
-                <li>Geometric Shapes</li>
-                <li>Personalized Styling</li>
-                <li>Color Techniques</li>
-                <li>Hair Care Education</li>
-            </ul>
+        <!-- Philosophy Section -->
+        <section class="mb-16 bg-white rounded-2xl shadow-lg p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800">My Philosophy</h2>
+                <blockquote class="text-2xl italic text-sky-600 mb-6">
+                    "The only place where success comes before work is in the dictionary." - Vidal Sassoon
+                </blockquote>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    I believe in creating haircuts that enhance my clients' natural features and fit their lifestyle. Every cut is a collaboration between stylist and client, resulting in a personalized look that's both beautiful and manageable. My work is inspired by Vidal Sassoon's revolutionary approach to precision cutting and geometric shapes.
+                </p>
+            </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">Philosophy</h2>
-            <blockquote class="italic border-l-4 border-[#B2FFFC] pl-4">
-                "It's the cut that counts." - Vidal Sassoon
-            </blockquote>
-            <p class="mt-4">I believe in creating haircuts that enhance my clients' natural features and fit their lifestyle. Every cut is a collaboration between stylist and client, resulting in a personalized look that's both beautiful and manageable.</p>
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Portfolio</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="text-center mb-8">
+                <div class="inline-flex rounded-lg border border-gray-200 bg-white p-1">
+                    <button class="filter-btn active px-4 py-2 rounded-md text-sm font-medium transition-all" data-filter="all">All Work</button>
+                    <button class="filter-btn px-4 py-2 rounded-md text-sm font-medium transition-all" data-filter="cuts">Precision Cuts</button>
+                    <button class="filter-btn px-4 py-2 rounded-md text-sm font-medium transition-all" data-filter="color">Color Work</button>
+                    <button class="filter-btn px-4 py-2 rounded-md text-sm font-medium transition-all" data-filter="styling">Event Styling</button>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="portfolio-item cuts" data-category="cuts">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer">
+                        <img src="folder/meg3.jpg" alt="Precision Bob Cut" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="text-lg font-semibold">Precision Bob</h3>
+                                <p class="text-sm">Classic geometric cut</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item color" data-category="color">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer">
+                        <img src="folder/meg4.jpg" alt="Blonde Highlights" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="text-lg font-semibold">Blonde Highlights</h3>
+                                <p class="text-sm">Natural sun-kissed look</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item cuts" data-category="cuts">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer">
+                        <img src="folder/meg5.jpg" alt="Layered Cut" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="text-lg font-semibold">Textured Layers</h3>
+                                <p class="text-sm">Movement and volume</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item styling" data-category="styling">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer">
+                        <img src="folder/meg6.jpg" alt="Wedding Updo" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="text-lg font-semibold">Bridal Styling</h3>
+                                <p class="text-sm">Elegant updo design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item color" data-category="color">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer">
+                        <img src="folder/meg7.jpg" alt="Color Correction" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="text-lg font-semibold">Color Transformation</h3>
+                                <p class="text-sm">From dark to light</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item cuts" data-category="cuts">
+                    <div class="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer">
+                        <img src="folder/meg8.jpg" alt="Modern Shag" class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="text-lg font-semibold">Modern Shag</h3>
+                                <p class="text-sm">Contemporary edge</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">Book an Appointment</h2>
-            <p>Ready to transform your look? Contact me to schedule your consultation and appointment.</p>
-            <a href="https://www.styleseat.com/m/v/meghanlaurahair" class="inline-block bg-[#B2FFFC] text-gray-800 py-2 px-4 rounded mt-4 hover:bg-[#87CEEB] transition-colors">Contact Me</a>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Client Reviews</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"Meghan is absolutely amazing! She gave me the perfect cut that works with my busy lifestyle. Her attention to detail and precision is unmatched."</p>
+                    <div class="text-sm font-semibold text-gray-800">- Sarah M.</div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"I've been going to Meghan for 3 years and wouldn't trust anyone else with my hair. She's a true artist with incredible skill and vision."</p>
+                    <div class="text-sm font-semibold text-gray-800">- Jennifer L.</div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">"The best colorist I've ever worked with! Meghan transformed my hair and gave me a look I never thought possible. Professional and talented!"</p>
+                    <div class="text-sm font-semibold text-gray-800">- Maria K.</div>
+                </div>
+            </div>
         </section>
 
-        <section class="mb-12">
-          <h2 class="text-2xl font-bold mb-4">My Work</h2>
-          <div class="carousel-container">
-            <div class="carousel-slide active">
-              <img src="folder/meg3.jpg" alt="Hairstyle 1" class="w-full">
+        <!-- AI Chatbot Placeholder -->
+        <section class="mb-16 bg-gradient-to-r from-sky-100 to-pink-100 rounded-2xl p-8 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Coming Soon: AI Style Consultant</h2>
+            <p class="text-lg text-gray-600 mb-6">Get personalized style recommendations from our AI consultant trained on Vidal Sassoon techniques. Chat with our virtual stylist to explore looks, get estimates, and book appointments.</p>
+            <div class="bg-white/50 rounded-lg p-4 inline-block">
+                <svg class="w-12 h-12 text-sky-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+                <p class="text-sm text-gray-500 mt-2">AI Stylist Coming Soon</p>
             </div>
-            <div class="carousel-slide">
-              <img src="folder/meg4.jpg" alt="Hairstyle 2" class="w-full">
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-2xl p-8">
+                <h2 class="text-4xl font-bold text-center mb-8 text-gray-800">Book Your Appointment</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Booking Form -->
+                    <div>
+                        <form id="booking-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                    <input type="text" name="firstName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                    <input type="text" name="lastName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Service</label>
+                                <select name="service" id="service-select" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors">
+                                    <option value="">Select a service</option>
+                                    <option value="precision-cut" data-price="85">Precision Cut - $85</option>
+                                    <option value="color-services" data-price="120">Color Services - $120+</option>
+                                    <option value="cut-color-package" data-price="185">Cut & Color Package - $185</option>
+                                    <option value="event-styling" data-price="95">Special Event Styling - $95</option>
+                                    <option value="consultation" data-price="35">Style Consultation - $35</option>
+                                    <option value="maintenance" data-price="55">Maintenance Touch-Up - $55</option>
+                                </select>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
+                                    <input type="date" name="date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Time</label>
+                                    <select name="time" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors">
+                                        <option value="">Select time</option>
+                                        <option value="09:00">9:00 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="14:00">2:00 PM</option>
+                                        <option value="15:00">3:00 PM</option>
+                                        <option value="16:00">4:00 PM</option>
+                                        <option value="17:00">5:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Special Requests or Notes</label>
+                                <textarea name="notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors" placeholder="Tell me about your hair goals, any concerns, or special requests..."></textarea>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div id="price-display" class="text-2xl font-bold text-sky-600 mb-4 hidden">Total: $<span id="price-amount">0</span></div>
+                                <button type="submit" class="bg-gradient-to-r from-sky-500 to-pink-500 text-white px-8 py-4 rounded-lg font-semibold hover:from-sky-600 hover:to-pink-600 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    Book & Pay Now
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Get In Touch</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span class="text-gray-600">Western Maine Studio</span>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <span class="text-gray-600">Available by appointment</span>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-sky-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div class="text-gray-600">
+                                    <div>Tuesday - Saturday</div>
+                                    <div class="text-sm">9:00 AM - 6:00 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-sky-50 rounded-lg">
+                            <h4 class="font-semibold text-sky-800 mb-2">Why Book Online?</h4>
+                            <ul class="text-sm text-sky-700 space-y-1">
+                                <li>• Secure payment processing</li>
+                                <li>• Instant confirmation</li>
+                                <li>• Easy rescheduling</li>
+                                <li>• Appointment reminders</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <p class="text-sm text-gray-500 mb-4">Prefer to call?</p>
+                            <a href="https://www.styleseat.com/m/v/meghanlaurahair" class="inline-block bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition-colors">
+                                Book on StyleSeat
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-slide">
-              <img src="folder/meg5.jpg" alt="Hairstyle 3" class="w-full">
-            </div>
-            <div class="carousel-slide">
-              <img src="folder/meg6.jpg" alt="Hairstyle 4" class="w-full">
-            </div>
-            <div class="carousel-slide">
-              <img src="folder/meg7.jpg" alt="Hairstyle 5" class="w-full">
-            </div>
-            <div class="carousel-slide">
-              <img src="folder/meg8.jpg" alt="Hairstyle 6" class="w-full">
-            </div>
-            <div class="carousel-slide">
-              <img src="folder/meg9.jpg" alt="Hairstyle 7" class="w-full">
-            </div>
-            <button class="carousel-button prev">&lt;</button>
-            <button class="carousel-button next">&gt;</button>
-          </div>
         </section>
     </main>
 
-    <footer class="bg-[#87CEEB] text-white py-4 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            &copy; 2024 Meghan | Hair Stylist. All rights reserved.
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-sky-600 to-pink-500 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Meghan Hair Studio</h3>
+                    <p class="text-white/80">Precision hair artistry inspired by Vidal Sassoon's legacy of excellence. Creating beautiful, manageable styles for over 17 years.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#booking" class="hover:text-white transition-colors">Book Now</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="space-y-2 text-white/80">
+                        <p>Western Maine</p>
+                        <p>By Appointment Only</p>
+                        <a href="https://www.styleseat.com/m/v/meghanlaurahair" class="inline-block mt-4 bg-white/20 px-4 py-2 rounded-lg hover:bg-white/30 transition-colors">
+                            StyleSeat Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/60">
+                <p>&copy; 2024 Meghan Hair Studio. All rights reserved. | Precision cuts that enhance your natural beauty.</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        const slides = document.querySelectorAll('.carousel-slide');
-        const prevButton = document.querySelector('.carousel-button.prev');
-        const nextButton = document.querySelector('.carousel-button.next');
-        let currentSlide = 0;
-        let slideInterval;
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Secure Payment</h3>
+                <p class="text-gray-600">Complete your booking with secure payment</p>
+            </div>
+            
+            <div id="card-element" class="p-4 border border-gray-300 rounded-lg mb-4">
+                <!-- Stripe Elements will create input fields here -->
+            </div>
+            
+            <div class="flex space-x-4">
+                <button id="cancel-payment" class="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg hover:bg-gray-400 transition-colors">
+                    Cancel
+                </button>
+                <button id="submit-payment" class="flex-1 bg-sky-500 text-white py-3 rounded-lg hover:bg-sky-600 transition-colors">
+                    Pay Now
+                </button>
+            </div>
+        </div>
+    </div>
 
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function startSlideshow() {
-            slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
-        }
-
-        function stopSlideshow() {
-            clearInterval(slideInterval);
-        }
-
-        prevButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSlide(currentSlide - 1);
-            stopSlideshow();
-        });
-
-        nextButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            showSlide(currentSlide + 1);
-            stopSlideshow();
-        });
-
-        // Start the slideshow automatically
-        startSlideshow();
-
-        // Optional: Pause slideshow on hover
-        const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', stopSlideshow);
-        carouselContainer.addEventListener('mouseleave', startSlideshow);
-    </script>
+    <script src="enhanced-scripts.js"></script>
 </body>
 </html>
