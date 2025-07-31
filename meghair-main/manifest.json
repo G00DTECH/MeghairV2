@@ -1,0 +1,135 @@
+{
+  "name": "Meghan Hair Studio - Precision Hair Artistry",
+  "short_name": "Meghan Hair",
+  "description": "Professional hair styling services in Maine. Precision cuts, color, and styling inspired by Vidal Sassoon philosophy. Book your appointment online.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFC5C5",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["beauty", "lifestyle", "business"],
+  "screenshots": [
+    {
+      "src": "assets/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Meghan Hair Studio - Desktop View"
+    },
+    {
+      "src": "assets/screenshot-narrow.png",
+      "sizes": "640x1136",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Meghan Hair Studio - Mobile View"
+    }
+  ],
+  "icons": [
+    {
+      "src": "assets/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Book",
+      "description": "Book your hair appointment quickly",
+      "url": "/#booking",
+      "icons": [
+        {
+          "src": "assets/shortcut-book.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "View Portfolio",
+      "short_name": "Portfolio",
+      "description": "Browse hair styling portfolio",
+      "url": "/#portfolio",
+      "icons": [
+        {
+          "src": "assets/shortcut-portfolio.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Services & Pricing",
+      "short_name": "Services",
+      "description": "View available services and pricing",
+      "url": "/#services",
+      "icons": [
+        {
+          "src": "assets/shortcut-services.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/#share",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+hairstyling",
+      "url": "/#appointment?service=%s"
+    }
+  ]
+}

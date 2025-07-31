@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Meghan Hair Studio</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #0ea5e9, #ec4899);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .offline-container {
+            max-width: 400px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .retry-button {
+            background: white;
+            color: #0ea5e9;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cached-content {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cached-content h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cached-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cached-content li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cached-content a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .cached-content a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 480px) {
+            .offline-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <svg class="offline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 1v6m0 6v6"></path>
+            <path d="m21 12-6-3-6 3-6-3-6 3"></path>
+        </svg>
+        
+        <h1>You're Offline</h1>
+        <p>Don't worry! You can still browse some content and even book appointments offline. Your bookings will sync when you're back online.</p>
+        
+        <button class="retry-button" onclick="window.location.reload()">Try Again</button>
+        <button class="retry-button" onclick="goHome()" style="background: transparent; border: 2px solid white; color: white;">Go Home</button>
+        
+        <div class="cached-content">
+            <h2>Available Offline</h2>
+            <ul>
+                <li><a href="/" onclick="navigateOffline('/')">Home Page</a></li>
+                <li><a href="/#about" onclick="navigateOffline('/#about')">About Meghan</a></li>
+                <li><a href="/#services" onclick="navigateOffline('/#services')">Services & Pricing</a></li>
+                <li><a href="/#portfolio" onclick="navigateOffline('/#portfolio')">Hair Portfolio</a></li>
+                <li><a href="/#booking" onclick="navigateOffline('/#booking')">Book Appointment (Offline)</a></li>
+            </ul>
+            
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                <strong>Offline Booking Available!</strong><br>
+                <small>Book your appointment even without internet. It will sync automatically when you're back online.</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goHome() {
+            window.location.href = '/';
+        }
+
+        function navigateOffline(url) {
+            window.location.href = url;
+        }
+
+        // Check for connection and auto-retry
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }
+
+        // Listen for online event
+        window.addEventListener('online', checkConnection);
+
+        // Auto-check connection every 30 seconds
+        setInterval(checkConnection, 30000);
+
+        // Display connection status
+        function updateConnectionStatus() {
+            const isOnline = navigator.onLine;
+            if (isOnline) {
+                checkConnection();
+            }
+        }
+
+        window.addEventListener('online', updateConnectionStatus);
+        window.addEventListener('offline', updateConnectionStatus);
+    </script>
+</body>
+</html>

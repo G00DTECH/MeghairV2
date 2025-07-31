@@ -1,0 +1,371 @@
+/* Delightful Extras CSS - Additional Whimsical Elements */
+
+/* Magical Loading Text Rotation */
+.loading-messages {
+    animation: loading-text-cycle 3s infinite;
+}
+
+@keyframes loading-text-cycle {
+    0%, 20% { content: "✨ Creating magic..."; }
+    25%, 45% { content: "✂️ Precision cutting..."; }
+    50%, 70% { content: "🎨 Adding sparkle..."; }
+    75%, 95% { content: "💫 Almost ready..."; }
+}
+
+/* Floating Heart Animation for Success */
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.heart {
+    position: absolute;
+    color: #ff69b4;
+    font-size: 20px;
+    animation: float-heart 4s ease-out forwards;
+}
+
+@keyframes float-heart {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) scale(1);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Playful Booking Form Progress */
+.form-progress {
+    position: relative;
+    height: 4px;
+    background: rgba(14, 165, 233, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.form-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #87ceeb, #ffc5c5, #87ceeb);
+    background-size: 200% 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+    animation: progress-shimmer 2s linear infinite;
+}
+
+@keyframes progress-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Fun Service Card Hover States */
+.service-card-enhanced {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-enhanced::after {
+    content: '✨';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+.service-card-enhanced:hover::after {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+}
+
+/* Testimonial Card Quote Marks */
+.testimonial-enhanced::before {
+    content: '\201C';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-size: 4rem;
+    color: rgba(14, 165, 233, 0.1);
+    font-family: serif;
+    line-height: 1;
+    animation: quote-pulse 3s ease-in-out infinite;
+}
+
+@keyframes quote-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.1); opacity: 0.2; }
+}
+
+/* Interactive Portfolio Image Effects */
+.portfolio-enhanced {
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-enhanced::before {
+    content: '🌟';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 2rem;
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.portfolio-enhanced:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    animation: star-twinkle 1s ease-in-out infinite;
+}
+
+@keyframes star-twinkle {
+    0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    50% { transform: translate(-50%, -50%) scale(1.2) rotate(180deg); }
+}
+
+/* Delightful Input Focus Effects */
+.input-enhanced {
+    position: relative;
+}
+
+.input-enhanced input:focus + .input-label,
+.input-enhanced select:focus + .input-label {
+    animation: label-dance 0.5s ease-out;
+}
+
+@keyframes label-dance {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-5px) scale(1.05); }
+    75% { transform: translateY(-3px) scale(1.02); }
+}
+
+/* Success Checkmark Animation */
+.success-checkmark {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #10b981;
+    position: relative;
+    animation: checkmark-pop 0.6s ease-out;
+}
+
+.success-checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    animation: checkmark-draw 0.3s ease-out 0.3s both;
+}
+
+@keyframes checkmark-pop {
+    0% { transform: scale(0); }
+    60% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes checkmark-draw {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Pricing Display Animation */
+.price-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.price-reveal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: price-shine 2s ease-in-out infinite;
+}
+
+@keyframes price-shine {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+/* Floating Action Button */
+.fab-delightful {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #87ceeb, #ffc5c5);
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    animation: fab-bounce 2s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.fab-delightful:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    animation: none;
+}
+
+@keyframes fab-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Scroll-triggered Sparkles */
+.sparkle-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    animation: sparkle-fade 1s ease-out forwards;
+}
+
+@keyframes sparkle-fade {
+    0% {
+        opacity: 1;
+        transform: scale(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+/* Interactive Navigation Links */
+.nav-link-enhanced {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link-enhanced::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #87ceeb, #ffc5c5);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link-enhanced:hover::before {
+    width: 100%;
+}
+
+.nav-link-enhanced:hover {
+    transform: translateY(-2px);
+}
+
+/* Mobile-specific Delight */
+@media (max-width: 768px) {
+    .mobile-delight {
+        position: relative;
+    }
+    
+    .mobile-delight::after {
+        content: '📱';
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 1rem;
+        opacity: 0.7;
+        animation: mobile-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes mobile-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+}
+
+/* Accessibility-friendly animations */
+@media (prefers-reduced-motion: reduce) {
+    .heart,
+    .sparkle-trail,
+    .fab-delightful {
+        animation: none !important;
+    }
+    
+    .service-card-enhanced:hover::after {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* High contrast mode adaptations */
+@media (prefers-contrast: high) {
+    .form-progress-bar {
+        background: currentColor;
+    }
+    
+    .success-checkmark {
+        background: currentColor;
+        border: 2px solid;
+    }
+    
+    .fab-delightful {
+        background: currentColor;
+        border: 2px solid;
+    }
+}
+
+/* Fun utility classes */
+.wiggle-on-hover:hover {
+    animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-3deg); }
+    75% { transform: rotate(3deg); }
+}
+
+.bounce-on-click:active {
+    animation: quick-bounce 0.2s ease-out;
+}
+
+@keyframes quick-bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.glow-on-focus:focus {
+    box-shadow: 0 0 20px rgba(135, 206, 235, 0.5);
+    animation: focus-glow 2s ease-in-out infinite;
+}
+
+@keyframes focus-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(135, 206, 235, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(135, 206, 235, 0.8); }
+}

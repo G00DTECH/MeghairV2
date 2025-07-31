@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meghan | Hair Stylist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel-slide {
+            display: none;
+            width: 100%;
+        }
+        .carousel-slide.active {
+            display: block;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .carousel-button.prev { left: 10px; }
+        .carousel-button.next { right: 10px; }
+    </style>
+</head>
+<body class="bg-[#FFC5C5] text-gray-800">
+    <header class="bg-[#87CEEB] text-white py-6">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold">Meghan</h1>
+            <p class="text-xl">Precision Hair Stylist</p>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-12 text-center">
+            <img src="folder/bio_meg.png" alt="Meghan, a hair stylist with shoulder-length blonde hair and glasses" class="max-w-full h-auto mx-auto">
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">About Me</h2>
+            <p>I'm a 17 year hair veteran from western Maine, first learning the fundamentals of hair in Boston on the reputable Newbury Street. I then returned to my home state for 10 years where I was fortunate enough to build steadfast relationships with my clients.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">My Specialties</h2>
+            <p>My approach to hairstyling is deeply influenced by the Vidal Sassoon philosophy of precision cutting and personalized style.</p>
+            <ul class="list-disc list-inside">
+                <li>Precision Cuts</li>
+                <li>Geometric Shapes</li>
+                <li>Personalized Styling</li>
+                <li>Color Techniques</li>
+                <li>Hair Care Education</li>
+            </ul>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Philosophy</h2>
+            <blockquote class="italic border-l-4 border-[#B2FFFC] pl-4">
+                "It's the cut that counts." - Vidal Sassoon
+            </blockquote>
+            <p class="mt-4">I believe in creating haircuts that enhance my clients' natural features and fit their lifestyle. Every cut is a collaboration between stylist and client, resulting in a personalized look that's both beautiful and manageable.</p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Book an Appointment</h2>
+            <p>Ready to transform your look? Contact me to schedule your consultation and appointment.</p>
+            <a href="https://www.styleseat.com/m/v/meghanlaurahair" class="inline-block bg-[#B2FFFC] text-gray-800 py-2 px-4 rounded mt-4 hover:bg-[#87CEEB] transition-colors">Contact Me</a>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold mb-4">My Work</h2>
+          <div class="carousel-container">
+            <div class="carousel-slide active">
+              <img src="folder/meg3.jpg" alt="Hairstyle 1" class="w-full">
+            </div>
+            <div class="carousel-slide">
+              <img src="folder/meg4.jpg" alt="Hairstyle 2" class="w-full">
+            </div>
+            <div class="carousel-slide">
+              <img src="folder/meg5.jpg" alt="Hairstyle 3" class="w-full">
+            </div>
+            <div class="carousel-slide">
+              <img src="folder/meg6.jpg" alt="Hairstyle 4" class="w-full">
+            </div>
+            <div class="carousel-slide">
+              <img src="folder/meg7.jpg" alt="Hairstyle 5" class="w-full">
+            </div>
+            <div class="carousel-slide">
+              <img src="folder/meg8.jpg" alt="Hairstyle 6" class="w-full">
+            </div>
+            <div class="carousel-slide">
+              <img src="folder/meg9.jpg" alt="Hairstyle 7" class="w-full">
+            </div>
+            <button class="carousel-button prev">&lt;</button>
+            <button class="carousel-button next">&gt;</button>
+          </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#87CEEB] text-white py-4 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            &copy; 2024 Meghan | Hair Stylist. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevButton = document.querySelector('.carousel-button.prev');
+        const nextButton = document.querySelector('.carousel-button.next');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+        }
+
+        function stopSlideshow() {
+            clearInterval(slideInterval);
+        }
+
+        prevButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSlide(currentSlide - 1);
+            stopSlideshow();
+        });
+
+        nextButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSlide(currentSlide + 1);
+            stopSlideshow();
+        });
+
+        // Start the slideshow automatically
+        startSlideshow();
+
+        // Optional: Pause slideshow on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', stopSlideshow);
+        carouselContainer.addEventListener('mouseleave', startSlideshow);
+    </script>
+</body>
+</html>
